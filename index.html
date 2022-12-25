@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
     <style>
         body {
-            margin 5pt;
+            margin: 5pt;
             background-size: contain;
         }
         
@@ -101,6 +101,12 @@
                     d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Z" />
             </svg> AI with <a href="https://bunny.net">Bunny.AI</a></p>
     </div>
+    <br/>
+    <p id="resultdescription">随机推荐：</p>
+    <div style="width: 256px;height: 256px; background-image:url(loading.png)">
+
+        <img id="resultimage" onload="this.style.display='block'" style="display:none">
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -108,12 +114,25 @@
         $(function() {
             $('details').attr('open', false);
             $('details').show();
+            let url = `https://bunnynet-avatars.b-cdn.net/.ai/img/dalle-256/avatar/${Math.random().toString() + Date.now()}/rabbit.jpg?width=256`;
+            $("#resultimage").attr('src', url);
+            $("#down").attr('href', url);
+            $("#down").attr('download', 'rabbit.jpg');
         });
         $("#button").click(function() {
             var nameValue = $('#name').val();
+
+            if (nameValue == '') {
+                alert("name is required");
+                return;
+            }
+            $("#resultimage").removeAttr('src');
             var engineValue = $('#engine').val();
             var descriptionValue = $('#description').val();
-            window.open(`https://bunnynet-avatars.b-cdn.net/.ai/img/dalle-${engineValue}/avatar/${nameValue}/${descriptionValue}.jpg?width=256`)
+            let url = `https://bunnynet-avatars.b-cdn.net/.ai/img/dalle-${engineValue}/avatar/${nameValue}/${descriptionValue}.jpg?width=256}/rabbit.jpg?width=256`;
+            $("#resultimage").attr('src', url);
+            $("#resultdescription").text(`${nameValue} 生成结果`);
+            window.open(utl);
         });
     </script>
 
