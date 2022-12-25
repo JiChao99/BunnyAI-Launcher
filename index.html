@@ -64,7 +64,7 @@
     <div class="body-content">
 
         <div class="header">
-            <img src="rabbit.webp" width="64" alt="Rabbit" class="rotate"> <span>AI generates rabbit avatar</span>
+            <img src="rabbit.webp" width="64" alt="Rabbit" class="rotate"> <span>AI rabbit avatar</span>
         </div>
 
         <form class="pure-form pure-form-stacked">
@@ -134,10 +134,11 @@
                 let url = `https://bunnynet-avatars.b-cdn.net/.ai/img/dalle-${engineValue}/${blueprintValue}/${nameValue}/${descriptionValue}`;
                 $("#resultimage").attr('src', url);
                 $("#resultdescription").text(`${nameValue} result`);
+                $('details').attr('open', false);
             });
         </script>
 
     </div>
 </body>
 
-</html>
+</html
